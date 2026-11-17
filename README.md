@@ -21,7 +21,8 @@ A small ASP.NET Core app that uploads files to Amazon S3. It includes a browser 
 2. Sign in with short-lived local development credentials:
 
    ```powershell
-   aws login --region us-east-1
+   aws login --profile s3-upload-local --region us-east-1
+   $env:AWS_PROFILE = "s3-upload-local"
    ```
 
    Complete the browser sign-in and any approval prompts. The app uses the AWS SDK credential provider; it does not store access keys in the project. The `AWSSDK.Signin` package enables the AWS CLI login credentials provider.
