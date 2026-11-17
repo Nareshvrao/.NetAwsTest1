@@ -5,6 +5,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="AWSSDK.S3" Version="4.0.17" />
+    <PackageReference Include="AWSSDK.S3" Version="4.0.104.12" />
+    <PackageReference Include="AWSSDK.Signin" Version="4.1.0.1" />
   </ItemGroup>
 </Project>

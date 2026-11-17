@@ -5,8 +5,9 @@ A small ASP.NET Core app that uploads files to Amazon S3. It includes a browser 
 ## Requirements
 
 - .NET 10 SDK (LTS)
+- AWS CLI v2.32.0 or newer
 - An AWS account and an S3 bucket
-- AWS credentials available through the standard AWS SDK credential chain
+- AWS console credentials available through the AWS CLI sign-in flow
 
 ## Run locally
 
@@ -17,7 +18,13 @@ A small ASP.NET Core app that uploads files to Amazon S3. It includes a browser 
    $env:AWS__S3Bucket = "your-unique-bucket-name"
    ```
 
-2. Configure local AWS credentials with the AWS CLI (`aws configure`) or use an AWS IAM Identity Center profile. The app uses the AWS SDK's default credential chain; it does not store access keys in the project.
+2. Sign in with short-lived local development credentials:
+
+   ```powershell
+   aws login --region us-east-1
+   ```
+
+   Complete the browser sign-in and any approval prompts. The app uses the AWS SDK credential provider; it does not store access keys in the project. The `AWSSDK.Signin` package enables the AWS CLI login credentials provider.
 3. Start the app:
 
    ```powershell
