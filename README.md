@@ -7,7 +7,7 @@ A small ASP.NET Core app that uploads files to Amazon S3. It includes a browser 
 - .NET 10 SDK (LTS)
 - AWS CLI v2.32.0 or newer
 - An AWS account and an S3 bucket
-- AWS console credentials available through the AWS CLI sign-in flow
+- An IAM Identity Center profile with permission to upload to the test bucket
 
 ## Run locally
 
@@ -18,14 +18,15 @@ A small ASP.NET Core app that uploads files to Amazon S3. It includes a browser 
    $env:AWS__S3Bucket = "your-unique-bucket-name"
    ```
 
-2. Sign in with short-lived local development credentials:
+2. Configure and sign in to a named IAM Identity Center profile:
 
    ```powershell
-   aws login --profile s3-upload-local --region us-east-1
+   aws configure sso --profile s3-upload-local
+   aws sso login --profile s3-upload-local
    $env:AWS_PROFILE = "s3-upload-local"
    ```
 
-   Complete the browser sign-in and any approval prompts. The app uses the AWS SDK credential provider; it does not store access keys in the project. The `AWSSDK.Signin` package enables the AWS CLI login credentials provider.
+   Use a permission set with only the S3 access the app needs. Do not use the AWS account root user for local development. The AWS SDK reads the selected profile; no AWS credentials are stored in this project.
 3. Start the app:
 
    ```powershell
@@ -61,5 +62,6 @@ Keep the bucket private. This starter returns the object key but does not make f
 | --- | --- | --- |
 | AWS region | `AWS__Region` | `us-east-1` |
 | S3 bucket | `AWS__S3Bucket` | (required) |
+| AWS profile | `AWS_PROFILE` | `default` |
 
 `__` maps to `:` in .NET configuration. Never commit AWS access keys or secrets.

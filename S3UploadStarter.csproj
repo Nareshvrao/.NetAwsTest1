@@ -6,6 +6,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="AWSSDK.S3" Version="4.0.104.12" />
-    <PackageReference Include="AWSSDK.Signin" Version="4.1.0.1" />
+    <PackageReference Include="AWSSDK.SSO" Version="4.0.100.23" />
+    <PackageReference Include="AWSSDK.SSOOIDC" Version="4.0.100.17" />
   </ItemGroup>
 </Project>
